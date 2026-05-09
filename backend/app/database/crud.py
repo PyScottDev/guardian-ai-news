@@ -1,5 +1,6 @@
 
 from datetime import date
+import json
 from sqlmodel import Session, select
 
 from app.database.models import SimplifiedArticles
@@ -76,7 +77,7 @@ def update_body(
     db_article.headline = simplified_body.headline
     db_article.subheadline = simplified_body.subheadline
     db_article.body = simplified_body.body
-    db_article.questions = str(simplified_body.questions)
+    db_article.questions = json.dumps(simplified_body.questions, ensure_ascii=False)
     
     session.add(db_article)
     session.commit()

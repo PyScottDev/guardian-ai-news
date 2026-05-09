@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import os
 import json
 
-from app.schemas import ArticlePreview, GeminiHeadlines, GeminiBody
+from app.schemas import ArticlePreview, GeminiHeadlines, GeminiBody, ArticleFull
 
 load_dotenv()
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
@@ -63,7 +63,7 @@ async def simplify_headline(articles: list[ArticlePreview], level: str):
         
     return simplified_headlines
 
-async def simplify_body(article: GeminiBody, level: str):
+async def simplify_body(article: ArticleFull, level: str):
     if level == "a1":
         word_count = 200
     elif level == "a2":
